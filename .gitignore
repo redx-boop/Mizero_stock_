@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment files (secrets)
+.env
+.env.local
+.env.*.local
+.env.docker
+.env.production
+
+# Freebuff workspace artifacts
+.freebuff/
+
+# Local DB dumps (contain user password hashes - never publish)
+database backup/
+
+# Personal files, unreferenced by the app
+IMG_0916.PNG
+
+# Build output
+frontend/dist/
+
+# Logs
+*.log
+frontend.log
+backend.log
+backend_logs.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Docker volumes
+mysql_data/
+
+# Temp files
+nul
