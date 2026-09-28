@@ -28,10 +28,10 @@ services:
       - "127.0.0.1:3307:3306"   # Expose on host (localhost only) on a non-standard port
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./backend/database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      # Full schema (base + ALL migrations 004-026) + seed data.
+      # Applied automatically ONLY on first boot (empty mysql_data volume).
+      - ./backend/database/schema-full.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
       - ./backend/database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
-      # Migration: user-departments many-to-many table (required for login to work)
-      - ./backend/database/migration-002-user-departments.sql:/docker-entrypoint-initdb.d/03-migration-002-user-departments.sql:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-rootpassword}"]
       interval: 15s

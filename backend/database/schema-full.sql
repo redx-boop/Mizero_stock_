@@ -540,3 +540,16 @@ CREATE TABLE `users` (
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+
+-- =====================================================================
+-- REQUIRED SEED DATA (part of the schema contract)
+-- =====================================================================
+-- The original schema.sql ships these role rows, and seed.sql's users
+-- reference them by id. They must exist before seed.sql runs, so they
+-- belong in the schema bootstrap, not the seed file.
+-- =====================================================================
+
+INSERT INTO roles (name, description) VALUES
+('super_admin', 'Full system access'),('admin', 'Manage users, departments, and inventory'),
+  ('stock_manager', 'Full inventory operations - stock in/out, adjustments, borrowing, requests, activity logs'),
+('staff', 'Create requests, view assigned inventory and notifications');
