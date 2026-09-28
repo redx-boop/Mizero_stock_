@@ -57,7 +57,7 @@ JWT_EXPIRES_IN=24h
 FRONTEND_URL=http://localhost
 
 # The port to expose the app on (default 80)
-PORT=80
+APP_PORT=80
 ```
 
 > **Important:** Use strong, unique passwords. Never use the default/example values in production.
@@ -102,17 +102,17 @@ You should see all three containers with a `healthy` or `running` status:
 
 Open a browser and go to:
 
-- **http://localhost** (if `PORT=80` in `.env`)
-- **http://localhost:3000** (if you changed `PORT=3000` in `.env`)
+- **http://localhost** (if `APP_PORT=80` in `.env`)
+- **http://localhost:3000** (if you changed `APP_PORT=3000` in `.env`)
 
 ### Default Login Credentials
 
 | Email                | Password      | Role         |
 |----------------------|---------------|--------------|
-| admin@mizero.com     | admin123      | Super Admin  |
-| manager@mizero.com   | manager123    | Manager      |
-| stock@mizero.com     | stock123      | Stock Manager|
-| staff@mizero.com     | staff123      | Staff        |
+| admin@mizero.com     | password123   | Super Admin  |
+| john@mizero.com      | password123   | Stock Manager |
+| stock@mizero.com     | password123   | Stock Manager |
+| staff@mizero.com     | password123   | Staff        |
 
 > **Tip:** Change these passwords immediately after first login for security.
 
@@ -201,7 +201,7 @@ docker compose exec db mysql -u root -p
 ### "Port 80 already in use"
 Another program is using port 80. Either stop it, or change the port in `.env`:
 ```
-PORT=3000
+APP_PORT=3000
 ```
 
 ### "JWT_SECRET is required"

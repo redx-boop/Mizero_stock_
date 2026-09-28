@@ -99,7 +99,9 @@ services:
       backend:
         condition: service_healthy
     ports:
-      - "${PORT:-80}:80"  # Main entry point — map to host port 80 by default
+      # APP_PORT (not PORT) so a PORT variable that already exists in the OS
+      # environment cannot override the env file and break the host port.
+      - "${APP_PORT:-80}:80"  # Main entry point — map to host port 80 by default
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:80/"]
       interval: 30s

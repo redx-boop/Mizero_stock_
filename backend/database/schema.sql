@@ -260,7 +260,11 @@ CREATE TABLE activity_logs (
 -- ============================================
 -- INSERT DEFAULT ROLES
 -- ============================================
-INSERT INTO roles (name, description) VALUES
-('super_admin', 'Full system access'),('admin', 'Manage users, departments, and inventory'),
-  ('stock_manager', 'Full inventory operations - stock in/out, adjustments, borrowing, requests, activity logs'),
-('staff', 'Create requests, view assigned inventory and notifications');
+-- Explicit ids: seed.sql references roles by id (super_admin = 1). Relying on
+-- AUTO_INCREMENT here made the ids depend on insertion order, which broke the
+-- users INSERT with a foreign-key error on fresh installs.
+INSERT INTO roles (id, name, description) VALUES
+(1, 'super_admin', 'Full system access'),
+(2, 'admin', 'Manage users, departments, and inventory'),
+(3, 'stock_manager', 'Full inventory operations - stock in/out, adjustments, borrowing, requests, activity logs'),
+(4, 'staff', 'Create requests, view assigned inventory and notifications');
